@@ -1,180 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* ----------------------------
-   Global Styles
----------------------------- */
+html,
 body {
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  background: #f5f9ff;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0a192f, #1f4068, #16213e);
-  background-size: cover;
-  background-position: center;
-  color: white;
   overflow: hidden;
+}
+
+/* =====================
+   Split Layout
+===================== */
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  max-width: 1300px;
+  height: 80vh;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 45px rgba(0, 120, 255, 0.25);
+  background: white;
+  transform: translateX(50px); /* 🟢 Shifts the entire card 50px to the right */
+}
+
+/* =====================
+   Left Section (Blue)
+===================== */
+.auth-left {
+  flex: 0.9; /* ✅ Slightly larger portion to make blue visible */
+  background: linear-gradient(180deg, #007bff, #00bcd4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  height: 100%;
+}
+
+.auth-left img {
+  width: 95%; /* 🟢 Increased from 80% → 95% */
+  max-width: 500px; /* 🟢 Allows bigger display while keeping responsive */
+  border-radius: 20px;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.3);
+  background: white;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-left img:hover {
+  transform: scale(1.05); /* 🩵 Subtle hover zoom */
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+
+/* =====================
+   Right Section (White)
+===================== */
+.auth-right {
+  flex: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 90% 30%, #ffffff, #eaf7ff 80%);
+  padding: 0 80px;
+  height: 100%;
+}
+
+/* =====================
+   Login Card
+===================== */
+.login-card {
+  width: 380px;
+  padding: 45px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.15);
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.login-header .login-icon {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(0, 180, 255, 0.2), rgba(0, 255, 255, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 15px;
+  color: #00aaff;
+}
+
+.login-header h2 {
+  color: #003c70;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  color: #648aa3;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+/* =====================
+   Input Fields
+===================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
   position: relative;
 }
 
-/* ----------------------------
-   Glowing Background Animation
----------------------------- */
-body::before {
-  content: "";
+.input-icon {
   position: absolute;
-  top: -100px;
-  left: -100px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0, 255, 163, 0.4), transparent 70%);
-  filter: blur(120px);
-  animation: float 6s infinite alternate;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00aaff;
 }
 
-body::after {
-  content: "";
+.eye-toggle {
   position: absolute;
-  bottom: -120px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0, 180, 255, 0.3), transparent 70%);
-  filter: blur(140px);
-  animation: float 8s infinite alternate-reverse;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00aaff;
+  cursor: pointer;
 }
 
-@keyframes float {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(30px);
-  }
-}
-
-/* ----------------------------
-   Layout
----------------------------- */
-.container {
-  display: flex;
-  width: 90%;
-  max-width: 1200px;
-  z-index: 2;
-}
-
-/* ----------------------------
-   Left Info Section
----------------------------- */
-.info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px;
-  color: #e0f7fa;
-}
-
-.info h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #00e5ff, #00ff9d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.info p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #cfd8dc;
-}
-
-/* ----------------------------
-   Login Box
----------------------------- */
-.login-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* ----------------------------
-   Logo Section
----------------------------- */
-.logo {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.login-box h2 {
-  margin-bottom: 20px;
-  color: #00e5ff;
-}
-
-/* ----------------------------
-   Input Fields
----------------------------- */
 input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
+  padding: 12px 42px;
+  border: 1px solid #cce5f6;
   border-radius: 10px;
-  outline: none;
+  background: #fdfefe;
   font-size: 1rem;
+  color: #004466;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #00b8ff;
+  box-shadow: 0 0 10px rgba(0, 180, 255, 0.2);
 }
 
 input::placeholder {
-  color: #888;
+  color: #89b3c8;
 }
 
-/* ----------------------------
-   Buttons
----------------------------- */
+/* =====================
+   Button
+===================== */
 button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(90deg, #00e5ff, #00ff9d);
+  background: #007bff;
   border: none;
+  padding: 12px;
   border-radius: 10px;
-  color: #0a192f;
-  font-weight: bold;
+  color: white;
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 10px;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 12px #00e5ff;
+  background: #006ce0;
+  transform: translateY(-1px);
 }
 
-/* ----------------------------
-   Toggle Text (Login/Register)
----------------------------- */
+/* =====================
+   Switch Text
+===================== */
 .toggle {
-  margin-top: 15px;
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: #007bff;
   cursor: pointer;
-  color: #80deea;
-  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.toggle:hover {
+  color: #00aaff;
+}
+
+/* =====================
+   Responsive
+===================== */
+@media (max-width: 900px) {
+  .auth-wrapper {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 90%;
+  }
 }
