@@ -211,6 +211,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Heart, Shield, Clock, Brain, LogIn } from "lucide-react";
 import "../styles/HomePage.css";
+import loginImage from "../assets/doctor1.jpg"; 
 
 function HomePage() {
   const navigate = useNavigate();
@@ -256,7 +257,7 @@ function HomePage() {
 
         <div className="hero-image">
           <img
-            src="https://cdni.iconscout.com/illustration/premium/thumb/doctor-consulting-patient-online-5594885-4660917.png"
+            src="src/assets/doctor1.jpg"
             alt="Healthcare illustration"
           />
         </div>

@@ -102,11 +102,13 @@
 //   );
 // }
 
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
-import { Eye, EyeOff, User, Lock } from "lucide-react";
-import loginImage from "../assets/doctor.jpg"; // 👈 add a dummy image to /src/assets/
+// NOTE: Reverting to 'User' as 'Mail' might not be available in your lucide-react version.
+import { Eye, EyeOff, User, Lock } from "lucide-react"; 
+import loginImage from "../assets/doctor1.jpg"; // Reverting to the existing image file name
 
 export default function Login() {
   const navigate = useNavigate();
@@ -156,7 +158,7 @@ export default function Login() {
           setIsLogin(true);
         } else {
           const err = await res.json();
-          alert("⚠️ " + (err.detail || "Registration failed"));
+          alert("⚠ " + (err.detail || "Registration failed"));
         }
       }
     } catch (error) {
@@ -166,34 +168,42 @@ export default function Login() {
 
   return (
     <div className="auth-wrapper">
-      {/* LEFT PANEL */}
       <div className="auth-left">
-        <img src={loginImage} alt="Healthcare" />
+        <img src={loginImage} alt="Healthcare background" className="login-image" />
       </div>
 
-      {/* RIGHT PANEL */}
       <div className="auth-right">
         <div className="login-card">
           <div className="login-header">
-            <div className="login-icon">🩺</div>
+            {/* CareBot Logo and text */}
+            <div className="carebot-logo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="heart-icon"
+              >
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+              </svg>
+              <span>CareBot</span>
+            </div>
             <h2>{isLogin ? "Welcome Back" : "Create Account"}</h2>
             <p className="subtitle">
               {isLogin
                 ? "Login to continue your healthcare journey"
-                : "Start your AI healthcare journey today"}
+                : "Register to start your healthcare journey"}
             </p>
           </div>
 
           <form onSubmit={handleSubmit}>
-            {!isLogin && (
-              <div className="input-group">
-                <User className="input-icon" />
-                <input type="text" placeholder="Full name" required />
-              </div>
-            )}
-
             <div className="input-group">
-              <User className="input-icon" />
+              <User className="input-icon" /> {/* Using User icon for email */}
               <input
                 type="email"
                 placeholder="Email address"
@@ -215,21 +225,22 @@ export default function Login() {
               <span
                 className="eye-toggle"
                 onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff /> : <Eye />}
               </span>
             </div>
 
-            <button type="submit">{isLogin ? "Login" : "Create Account"}</button>
+            <button type="submit">{isLogin ? "Login" : "Register"}</button>
           </form>
 
           <p className="toggle" onClick={toggleForm}>
             {isLogin
-              ? "Don’t have an account? Register here"
-              : "Already have an account? Login here"}
+              ? <>Don’t have an account? <span>Register here</span></>
+              : <>Already have an account? <span>Login here</span></>}
           </p>
         </div>
       </div>
-    </div>
-  );
+  </div>
+ );
 }
