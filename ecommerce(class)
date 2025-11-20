@@ -1,0 +1,45 @@
+                            +------------------------+
+                            |       Customer         |
+                            +------------------------+
+                            | - customerID : int     |
+                            | - name : String        |
+                            | - email : String       |
+                            | - phone : String       |
+                            +------------------------+
+                            | + placeOrder()         |
+                            | + viewOrders()         |
+                            +-----------+------------+
+                                        |
+                                        | 1
+                                        |
+                                        | 1..*
+                                        |
+                              +---------+----------+
+                              |        Order       |
+                              +--------------------+
+                              | - orderID : int    |
+                              | - orderDate : Date |
+                              | - totalAmount:double|
+                              +---------------------+
+                              | + calculateTotal()  |
+                              | + addProduct()      |
+                              | + removeProduct()   |
+                              +----------+----------+
+                                         |
+                                         | 1
+                                         | 
+                                         | 1..*
+                                         |   (Composition)
+                                         |  ■■■■■■■■■■■■■■■■
+                              +----------+----------+
+                              |       Product       |
+                              +---------------------+
+                              | - productID : int   |
+                              | - name : String     |
+                              | - price : double    |
+                              | - description:String|
+                              +---------------------+
+                              | + getDetails()      |
+                              +---------------------+
+
+                              
