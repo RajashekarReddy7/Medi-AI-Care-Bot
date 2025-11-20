@@ -1,0 +1,48 @@
+                       +--------------------+
+                       |      Librarian     |
+                       +--------------------+
+                       | - librarianID:int  |
+                       | - name:String      |
+                       | - password:String  |
+                       +--------------------+
+                       | + issueBook()      |
+                       | + receiveBook()    |
+                       | + addBook()        |
+                       | + removeBook()     |
+                       +---------+----------+
+                                 |
+                                 | 1..*
+                                 |
+                                 |
+                       +----------------------+
+                       |     Transaction      |
+                       +----------------------+
+                       | - transactionID:int  |
+                       | - issueDate:Date     |
+                       | - dueDate:Date       |
+                       | - returnDate:Date    |
+                       | - fine:double        |
+                       +----------------------+
+                       | + calculateFine()    |
+                       | + closeTransaction() |
+                       +----+-----------+-----+
+                            |           |
+                          1 |           | 1
+                            |           |
+                          * |           | *
+                            |           |
+      +----------------------+           +----------------------+
+      |                                                     |
+      |                                                     |
++-------------------+                           +-------------------+
+|      Member       |                           |       Book        |
++-------------------+                           +-------------------+
+| - memberID:int    |                           | - bookID:int      |
+| - name:String     |                           | - title:String    |
+| - phone:String    |                           | - author:String   |
+| - email:String    |                           | - publisher:String|
++-------------------+                           | - isAvailable:bool|
+| + borrowBook()    |                           +-------------------+
+| + returnBook()    |                           | + getDetails()    |
++-------------------+                           | + updateAvail()   |
+                                                +-------------------+
