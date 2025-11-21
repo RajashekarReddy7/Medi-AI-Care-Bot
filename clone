@@ -1,0 +1,52 @@
+⭐ FULL COMMAND SET (Copy–Paste Exactly)
+🔹 STEP 1 — Clone mam’s repo
+git clone https://github.com/MAM/REPO_NAME.git
+
+
+Example:
+
+git clone https://github.com/mam123/student-app.git
+
+🔹 STEP 2 — Go into the project folder
+cd student-app
+
+🔹 STEP 3 — Open the project in VS Code
+code .
+
+
+VS Code will open your project now.
+
+⭐ BEFORE PUSHING:
+
+Create a new empty repo in your GitHub:
+Example:
+
+https://github.com/YOURNAME/student-app-mycopy
+
+⭐ Now run these commands to push this code to YOUR GitHub
+🔹 STEP 4 — Remove mam’s remote origin
+git remote remove origin
+
+🔹 STEP 5 — Add your own GitHub repo as new origin
+git remote add origin https://github.com/YOURNAME/student-app-mycopy.git
+
+
+Replace:
+
+YOURNAME → your GitHub username
+
+student-app-mycopy → your repo name
+
+🔹 STEP 6 — Stage everything
+git add .
+
+🔹 STEP 7 — Commit the code
+git commit -m "Initial copy from mam's repo"
+
+🔹 STEP 8 — Push to your GitHub (first time push)
+git push -u origin main
+
+
+⚠️ If your branch is master, then:
+
+git push -u origin master
