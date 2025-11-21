@@ -1,0 +1,82 @@
+🎯 Task Breakdown & Steps
+✅ 1. Configure Webhook in GitHub
+
+Follow these steps:
+
+Step 1: Open your GitHub repository
+
+Go to the repo given by your mam.
+
+Step 2: Go to Settings → Webhooks
+
+Left side menu → click Webhooks
+
+Step 3: Click “Add Webhook”
+Step 4: Enter the Payload URL
+
+Paste this:
+
+http://YOUR_JENKINS_IP:8080/github-webhook/
+
+
+For local machine:
+
+http://localhost:8080/github-webhook/
+
+Step 5: Content type
+
+Select:
+
+application/json
+
+Step 6: Select Trigger
+
+Choose:
+
+Just the push event
+
+Step 7: Click “Add Webhook”
+
+It will show:
+
+✓ green tick — webhook delivered successfully
+
+
+✔ Take screenshot for exam.
+
+✅ 2. Configure Jenkins to Accept Webhooks
+Step 1: Open Jenkins job → Configure
+Step 2: Enable GitHub Polling
+
+Scroll to Build Triggers:
+
+✔ Check this:
+
+GitHub hook trigger for GITScm polling
+
+
+This allows Jenkins to react to GitHub webhooks.
+
+Step 3: Save
+✅ 3. Push a Code Change to GitHub
+
+Edit any file in the repo. Example:
+index.html, README.md, any Java file.
+
+Commit & Push:
+
+git add .
+git commit -m "Webhook test"
+git push
+
+⭐ 4. Jenkins Automatically Triggers Build
+
+After your push, GitHub sends a webhook → Jenkins receives it → Build starts WITHOUT clicking “Build Now”.
+
+You will see:
+
+A new build begins immediately (build #2, #3 etc.)
+
+Console output shows "Started by GitHub push"
+
+✔ Take screenshot of this.
