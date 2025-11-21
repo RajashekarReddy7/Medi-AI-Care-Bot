@@ -6,6 +6,6 @@
 4)docker stop nagiosdemo
 
 #delete the nagios
-5)doctor rm nagiosdemo
+5)docker rm nagiosdemo
 6)docker images=> copy the image( jasonrivers/nagios)
 7)docker rmi jasonrivers/nagios
