@@ -1,3 +1,11 @@
 #open docker desktop and powershell
 1)docker pull jasonrivers/nagios:latest
-2)
+2)docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+#open powershell another one
+3)docker ps(copy name of container)=>nagiosdemo
+4)docker stop nagiosdemo
+
+#delete the nagios
+5)doctor rm nagiosdemo
+6)docker images=> copy the image( jasonrivers/nagios)
+7)docker rmi jasonrivers/nagios
