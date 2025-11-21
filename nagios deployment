@@ -1,0 +1,3 @@
+#open docker desktop and powershell
+1)docker pull jasonrivers/nagios:latest
+2)
