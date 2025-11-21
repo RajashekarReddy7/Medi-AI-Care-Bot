@@ -1,0 +1,15 @@
+#open powershell administrator
+1)minikube start
+2)kubectl create deployment mynginx --image=nginx
+3)kubectl get deployments
+4)kubectl expose deployment mynginx --type=NodePort  --port=80 --target-port=80
+5)kubectl scale deployment mynginx --replicas=4
+6)kubectl get deployments
+7)kubectl get pods
+8)kubectl port-forward svc/mynginx 8081:80
+#open another powershell and write
+9)minikube dashboard
+#delete commands
+11)kubectl delete deployment mynginx
+12)kubectl delete service mynginx
+13)minikube stop
