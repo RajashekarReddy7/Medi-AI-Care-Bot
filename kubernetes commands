@@ -1,4 +1,4 @@
-#open powershell administrator
+#open powershell administrator for ngnix
 1)minikube start
 2)kubectl create deployment mynginx --image=nginx
 3)kubectl get deployments
@@ -13,3 +13,13 @@
 11)kubectl delete deployment mynginx
 12)kubectl delete service mynginx
 13)minikube stop
+
+#open powershell administrator for sql
+1) minikube start
+2) kubectl create deployment mysql --image=mysql:5.7
+3) kubectl set env deployment/mysql MYSQL_ROOT_PASSWORD=pass123
+4) kubectl get deployments
+5) kubectl expose deployment mysql --type=NodePort --port=3306 --target-port=3306
+6) kubectl scale deployment mysql --replicas=4
+7) kubectl get deployments
+8) kubectl get pods
