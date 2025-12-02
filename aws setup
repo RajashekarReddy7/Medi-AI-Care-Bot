@@ -1,0 +1,45 @@
+aws setup
+1)login account email and password
+2)go to modules
+3)start lab
+4)click on green color aws left top
+5)connect ec2 
+6)launch instance
+7)write name, ubuntu os, any keypair name ceate key pair
+8)allow http and https
+9)right corner launch instance
+10)now open instances on top left
+11)after 3/3 checks passed connect and go to ssh client
+12)open cmd paste the downloaded file address 
+13)paste the ssh command
+14)sudo apt update
+15)sudo apt-get install docker.io
+16)sudo apt install git
+17)sudo apt install nano
+18)create a html file and open git bash from there
+19)git init
+20)git add .
+21)git commit -m "First Commit"
+22)git branch -M main
+23)git remote add origin https://github.com/RajashekarReddy7/awssample.git
+24)git push -u origin main
+25)now it shows the index.html in repo
+26)now copy path and open cmd which we using and do git clone repo url
+27)ls
+28)cd awssample
+29)ls
+30)nano Dockerfile
+31)FROM nginx:alpine
+32)COPY . /usr/share/nginx/html
+33)cntrl O
+34)sudo docker build -t webapp .
+35)sudo docker run -d -p 80:80 mywebapp
+36)go to instances and click on the left top number
+37)copy public ipv4 number
+38)take new tab and add that ipv4 address 13.222.10.149 like http://13.222.10.149
+
+
+now droping delete
+1)sudo docker ps=> copy container id 
+2)sudo docker stop (id_from top)
+3)now open aws instances and click instance state and do terminate instance
