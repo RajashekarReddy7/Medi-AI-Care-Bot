@@ -17,6 +17,19 @@ aws setup
 16)sudo apt install git
 17)sudo apt install nano
 18)create a html file and open git bash from there
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EC2 Server</title>
+</head>
+<body>
+    <h2>Hello from AWS EC2!</h2>
+    <p>This is a test webpage.</p>
+</body>
+</html>
+
+
 19)git init
 20)git add .
 21)git commit -m "First Commit"
