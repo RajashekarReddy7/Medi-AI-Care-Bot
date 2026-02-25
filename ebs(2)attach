@@ -1,0 +1,132 @@
+✅ Step 1: Create EBS Volume (AWS Console)
+
+Go to EC2 → Volumes
+
+Click Create Volume
+
+Select:
+
+Type: gp3
+
+Size: 20GB
+
+Availability Zone: Same as EC2
+
+Click Create Volume
+
+✅ Step 2: Attach Volume to EC2
+
+Select created volume
+
+Click Actions → Attach Volume
+
+Select EC2 instance
+
+Device name: /dev/xvdf
+
+Click Attach
+
+(Inside Linux it appears as /dev/nvme1n1)
+
+✅ Step 3: Connect to EC2
+
+From laptop:
+
+ssh -i ebs2.pem ec2-user@<public-ip>
+✅ Step 4: Verify Disk
+lsblk
+
+You will see:
+
+Root → /dev/nvme0n1
+
+New Disk → /dev/nvme1n1
+
+✅ Step 5: Create Partition
+sudo fdisk /dev/nvme1n1
+
+Inside fdisk:
+
+n
+p
+Enter
+Enter
+Enter
+w
+
+Reload partition table:
+
+sudo partprobe
+
+Verify:
+
+lsblk
+
+Now you see:
+
+/dev/nvme1n1p1
+✅ Step 6: Format Partition
+sudo mkfs.xfs /dev/nvme1n1p1
+✅ Step 7: Create Mount Directory
+sudo mkdir /mnt/archana
+
+(You can use any name like /mnt/data)
+
+✅ Step 8: Mount the Volume
+sudo mount /dev/nvme1n1p1 /mnt/archana
+
+Verify:
+
+df -h
+
+You should see:
+
+/dev/nvme1n1p1   20G   /mnt/archana
+✅ Step 9: Create Test File
+cd /mnt/archana
+sudo touch f1
+ls
+✅ Step 10: Get UUID
+sudo blkid /dev/nvme1n1p1
+
+Copy UUID.
+
+Example:
+
+UUID="be8a1f6b-0ecc-4cbf-86d6-c2b5c4326c96"
+✅ Step 11: Make Mount Permanent
+
+Edit fstab:
+
+sudo nano /etc/fstab
+
+Add:
+
+UUID=be8a1f6b-0ecc-4cbf-86d6-c2b5c4326c96   /mnt/archana   xfs   defaults,nofail   0   0
+
+Save and exit.
+
+Test:
+
+sudo mount -a
+
+If no error → correct.
+
+✅ Step 12: Reboot and Verify
+sudo reboot
+
+Reconnect and check:
+
+df -h
+ls /mnt/archana
+
+If f1 exists → ✅ Data persisted.
+
+🧠 Super Short Memory Trick
+
+Remember this order:
+
+Create → Attach → lsblk →
+fdisk → mkfs → mkdir →
+mount → blkid → fstab →
+reboot → verify
