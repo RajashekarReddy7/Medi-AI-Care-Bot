@@ -130,3 +130,61 @@ Create → Attach → lsblk →
 fdisk → mkfs → mkdir →
 mount → blkid → fstab →
 reboot → verify
+
+
+
+✅ Part 1: Detach Volume from First EC2
+Step 1: Unmount from Instance A
+sudo umount /mnt/archana
+Step 2: Detach from AWS Console
+
+Go to EC2 → Volumes
+
+Select the volume
+
+Click Actions → Detach Volume
+
+Wait until state becomes Available
+
+✅ Part 2: Attach to Second EC2 (Same AZ)
+Step 3: Attach Volume
+
+EC2 → Volumes
+
+Select volume
+
+Click Attach Volume
+
+Choose Second EC2 instance
+
+Device name: /dev/xvdf
+
+Click Attach
+
+Wait until state becomes In-use
+
+✅ Part 3: Mount in Second EC2
+Step 4: Login to Second EC2
+ssh -i key.pem ec2-user@public-ip
+Step 5: Verify Disk
+lsblk
+
+You should see:
+
+nvme0n1   8G   (root)
+nvme1n1   20G  (EBS)
+└─nvme1n1p1
+Step 6: Create Mount Directory
+sudo mkdir /mnt/archana
+Step 7: Mount Existing Volume
+
+⚠ Do NOT format again
+⚠ Do NOT use fdisk again
+
+sudo mount /dev/nvme1n1p1 /mnt/archana
+Step 8: Verify Data
+ls /mnt/archana
+
+You will see:
+
+f1
